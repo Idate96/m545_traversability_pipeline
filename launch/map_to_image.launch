@@ -1,0 +1,13 @@
+<launch> 
+
+    <arg name="map_name" default="occupancy_map.bag"/>
+    <param name="map_path" value="$(find traversability_pipeline)/data/$(arg map_name)"/>
+    <node pkg="traversability_pipeline" type="load_map" name="load_map" output="screen"/>
+    
+    
+    <param name="grid_map_topic" value="/grid_map"/>
+    <param name="file_path" value="$(find traversability_pipeline)/data/occupancy.png"/>
+    <param name="layer" value="occupancy"/>
+    <node name="map_to_image" pkg="traversability_pipeline" type="map_to_image" output="screen" />
+
+</launch>

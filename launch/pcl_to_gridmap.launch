@@ -1,0 +1,9 @@
+<launch> 
+    <include file="$(find grid_map_pcl)/launch/grid_map_pcl_loader_node.launch">
+    <arg name="folder_path" value="$(find traversability_pipeline)/data" />
+    <arg name="pcd_filename" value="map_ss_001.pcd" />
+    <arg name="output_grid_map" value="elevation_map.bag"/>
+    <arg name="map_frame" value="map"/>
+    <arg name="map_layer_name" value="elevation"/>
+    </include>
+</launch>

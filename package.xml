@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>traversability_pipeline</name>
+  <version>0.0.0</version>
+  <description>Traversability_pipeline fpr the excavator</description>
+  <maintainer email="lorenzoterenzi96@gmail.com">lorenzo</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>grid_map_ros</depend>
+  <depend>grid_map_msgs</depend>
+  <depend>grid_map_cv</depend>
+  <depend>grid_map_pcl</depend>
+  <depend>grid_map_sdf</depend>>
+  <depend>grid_map_core</depend>
+  <depend>cv_bridge</depend>
+  <depend>sensor_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+</package>

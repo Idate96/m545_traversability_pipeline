@@ -1,0 +1,4 @@
+occupancy_map_builder:
+  occupancy_threshold: 0.5 #traversability below this it is considered occupied  
+    
+       

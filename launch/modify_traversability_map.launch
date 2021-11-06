@@ -1,0 +1,5 @@
+<launch> 
+    <include file="$(find m545_map_manager)/launch/test_map_manager.launch">
+    <arg name="map_rosbag_name" value="traversability.bag"/>
+    </include>
+</launch>
