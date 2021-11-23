@@ -20,16 +20,26 @@ int main(int argc, char** argv) {
   }
   // convert the map into a message
   grid_map_msgs::GridMap message;
-  grid_map::GridMapRosConverter::toMessage(map, message);
 
+
+  Eigen::Vector2d positionOriginMapBag;
+  grid_map::Index index = Eigen::Vector2i(0, 0);
+  map.getPosition(index, positionOriginMapBag);
+  // ROS_INFO_STREAM("BagToMap: positionOriginMapBag: " << positionOriginMapBag);
+
+  bool published = false;
   while (ros::ok()) {
     // publish the map message
-    map_pub.publish(message);
     ros::spinOnce();
     // check number of subscribers to the topic
-    // if (map_pub.getNumSubscribers() > 0) {
-    //   ROS_INFO("Map published.");
-    //   break;
-    // }
+    if (map_pub.getNumSubscribers() > 0 && !published) {
+      ROS_INFO_STREAM("[LoadBag]: Publishing map");
+      grid_map::GridMapRosConverter::toMessage(map, message);
+      map_pub.publish(message);
+      published = true;
+    }
+    if (map_pub.getNumSubscribers() == 0) {
+      published = false;
+    }
   }
 }

@@ -17,6 +17,7 @@ set(CATKIN_DEPENDS
         roscpp
         rospy
         sensor_msgs
+        message_filters
         )
 
 
@@ -162,6 +163,23 @@ add_executable(map_to_image
 target_link_libraries(map_to_image
   ${catkin_LIBRARIES}
 )
+
+add_executable(image_to_map 
+    src/ImageToMap.cpp
+    src/image_to_map_node.cpp
+)
+target_link_libraries(image_to_map
+  ${catkin_LIBRARIES}
+)
+
+add_library(${PROJECT_NAME}
+    src/MapToImage.cpp
+    src/ImageToMap.cpp
+)
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -190,6 +208,10 @@ target_link_libraries(map_to_image
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
+catkin_install_python(
+  PROGRAMS scripts/image_publisher.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
@@ -233,11 +255,11 @@ if(CATKIN_ENABLE_TESTING)
 #         test/test_local_excavation.cpp)
 #  target_link_libraries(${PROJECT_NAME}_rostest 
 #         ${catkin_LIBRARIES})
- # normal catkin test 
-#  catkin_add_gtest(${PROJECT_NAME}_test test/test_local_excavation.cpp)
-#  if(TARGET ${PROJECT_NAME}_test)
-#    target_link_libraries(${PROJECT_NAME}_test ${PROJECT_NAME})
-#  endif()
+#  normal catkin test 
+ catkin_add_gtest(${PROJECT_NAME}_test test/test_image_to_map.cpp)
+ if(TARGET ${PROJECT_NAME}_test)
+   target_link_libraries(${PROJECT_NAME}_test ${PROJECT_NAME})
+ endif()
 endif()
 
 # Add folders to be run by python nosetests

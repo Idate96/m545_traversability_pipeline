@@ -15,6 +15,7 @@
   <depend>grid_map_core</depend>
   <depend>cv_bridge</depend>
   <depend>sensor_msgs</depend>
+  <depend>message_filters</depend>
   <depend>roscpp</depend>
   <depend>rospy</depend>
 </package>

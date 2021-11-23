@@ -4,9 +4,7 @@
 
 namespace traversability {
 
-
-MapToImage::MapToImage(ros::NodeHandle& nh):
-    nodeHandle_(nh){
+MapToImage::MapToImage(ros::NodeHandle& nh): nodeHandle_(nh){
   readParameters();
   gridMapSubscriber_ = nodeHandle_.subscribe(gridMapTopic_, 1, &MapToImage::gridMapCallback, this);
 }

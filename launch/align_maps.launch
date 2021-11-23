@@ -1,0 +1,30 @@
+<launch>
+  <rosparam command="load" file="$(find traversability_pipeline)/config/image_to_gridmap.yaml" />
+  <arg name="image_list" default="[$(find traversability_pipeline)/data/edited/elevation.png, 
+                                 $(find traversability_pipeline)/data/edited/occupancy.png]" />
+  <arg name="topic_list" default="[image/elevation, image/occupancy]" />
+  <arg name="save_path" default="$(find traversability_pipeline)/data/edited/edited_from_image.bag"/>
+     
+  <param name="image_elevation_topic" value="image/elevation" />
+  <param name="image_occupancy_topic" value="image/occupancy" />
+  <param name="save_path" value="$(arg save_path)" />
+  <rosparam param="image_list" subst_value="True">$(arg image_list)</rosparam>
+  <rosparam param="topic_list" subst_value="True">$(arg topic_list)</rosparam>
+  
+  <!-- Load the image. -->
+  <node pkg="traversability_pipeline" type="image_publisher.py" name="image_publisher" output="screen">
+    <!-- <param name="image_path" value="$(find coverage_planner)/data/occupancy.png" /> -->
+
+  </node>
+
+  
+  <node pkg="traversability_pipeline" type="image_to_map" name="image_to_map" output="screen" >
+
+  </node>
+
+  <!-- Launch the grid map visualizer -->
+  <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen" />
+
+  <!-- Launch RViz with the demo configuration -->
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find coverage_planner)/rviz/load_occupancy.rviz" /> -->
+</launch>

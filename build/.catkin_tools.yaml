@@ -1,0 +1,6 @@
+devel_space: /home/lorenzo/git/m545_traversability_pipeline/devel
+install: false
+install_space: /home/lorenzo/git/m545_traversability_pipeline/install
+profile: default
+source_space: /home/lorenzo/git/m545_traversability_pipeline/src
+workspace: /home/lorenzo/git/m545_traversability_pipeline

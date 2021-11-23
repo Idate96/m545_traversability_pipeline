@@ -1,0 +1,28 @@
+image_to_map:
+  image_topic: "/image/elevation"
+  resolution: 0.1
+  map_frame_id: "map"
+  min_height: 0.
+  max_height: 10.
+  map_offset_x: -31.88
+  map_offset_y: 23.86
+  map_length_x: 10
+  map_length_y: 10
+
+grid_map_visualization:
+  grid_map_topic: /edited_grid_map
+  grid_map_visualizations:
+    - name: elevation_points
+      type: point_cloud
+      params:
+        layer: elevation
+    - name: elevation_grid
+      type: occupancy_grid
+      params:
+        layer: elevation
+        data_min: 0
+        data_max: 1.
+    - name: flat_grid
+      type: flat_point_cloud
+      params:
+        height: 0.0

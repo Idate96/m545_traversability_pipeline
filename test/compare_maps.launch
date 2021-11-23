@@ -1,0 +1,15 @@
+<launch>
+    <include file="$(find traversability_pipeline)/test/visualize_map.launch">
+        <arg name="map_name" value="occupancy_map.bag"/>
+    </include>
+
+    <include file="$(find traversability_pipeline)/launch/align_maps.launch">
+        <arg name="image_list" value="[$(find traversability_pipeline)/data/elevation.png, 
+                                 $(find traversability_pipeline)/data/occupancy_edited.png]" />
+        <arg name="topic_list" value="[image/elevation, image/occupancy]" />
+        <arg name="save_path" value="$(find traversability_pipeline)/data/original_from_image.bag"/>
+    </include>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find traversability_pipeline)/rviz/compare_edited_map.rviz" />
+
+</launch>
