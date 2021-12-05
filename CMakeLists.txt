@@ -13,6 +13,7 @@ set(CATKIN_DEPENDS
         grid_map_cv
         grid_map_pcl
         grid_map_core
+        grid_map_rviz_plugin
         cv_bridge
         roscpp
         rospy
@@ -20,7 +21,7 @@ set(CATKIN_DEPENDS
         message_filters
         )
 
-
+## Build dependency
 find_package(catkin REQUIRED COMPONENTS
         grid_map_ros
         grid_map_msgs

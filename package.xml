@@ -18,4 +18,6 @@
   <depend>message_filters</depend>
   <depend>roscpp</depend>
   <depend>rospy</depend>
+
+  <exec_depend>grid_map_rviz_plugin</exec_depend>
 </package>

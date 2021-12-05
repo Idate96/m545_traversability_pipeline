@@ -1,6 +1,11 @@
 <launch>
-  <arg name="map_name" default="edited/edited_map.bag"/>
-  <param name="map_path" value="$(find traversability_pipeline)/data/$(arg map_name)"/>
-  <node pkg="traversability_pipeline" type="load_map" name="load_map" output="screen"/>
+  <arg name="map_name" default="map_ss_001_geo"/>
+  <arg name="vis_topic" default="grid_map"/>
+    <param name="map_path" value="$(find traversability_pipeline)/data/$(arg map_name).bag"/>
+    <param name="vis_topic" value="$(arg vis_topic)"/>
+  <node pkg="traversability_pipeline" type="load_map" name="load_map" output="screen">
+    <param name="map_path" value="$(find traversability_pipeline)/data/$(arg map_name).bag"/>
+    <param name="vis_topic" value="$(arg vis_topic)"/>
+  </node>
   <!-- <node name="rviz" pkg="rviz" type="rviz"/> -->
 </launch>

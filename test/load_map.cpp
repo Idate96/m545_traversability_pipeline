@@ -6,10 +6,17 @@
 int main(int argc, char** argv) {
   ros::init(argc, argv, "load_map_bag");
   ros::NodeHandle nh;
-  ros::Publisher map_pub = nh.advertise<grid_map_msgs::GridMap>("grid_map", 1);
+  std::string topic;
+  std::string map_path;
+  bool loaded = nh.param<std::string>("vis_topic", topic, "grid_map") &&
+                nh.param<std::string>("map_path", map_path, "map.bag");
+  if (!loaded){
+    ROS_ERROR("Parameters not loaded!");
+  }
+
+  ros::Publisher map_pub = nh.advertise<grid_map_msgs::GridMap>(topic, 1);
 
   grid_map::GridMap map;
-  std::string map_path = nh.param<std::string>("map_path", "map.bag");
 
   ROS_INFO("Loading map from %s", map_path.c_str());
   grid_map::GridMapRosConverter::loadFromBag(map_path, "grid_map", map);
